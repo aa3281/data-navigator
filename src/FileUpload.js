@@ -3,6 +3,7 @@ import { uploadFileToBlob } from './blobService';
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
+  const [uploadResponse, setUploadResponse] = useState(null);
   const [message, setMessage] = useState('');
   const fileInputRef = useRef(null);
 
@@ -13,8 +14,15 @@ const FileUpload = () => {
   const handleFileUpload = async () => {
     if (file) {
       try {
+        // const response = await uploadFileToBlob(file);
+        // setMessage(response);
         const response = await uploadFileToBlob(file);
-        setMessage(response);
+        setUploadResponse({
+          name: file.name,
+          url: response.url,
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        });
+        setMessage('File uploaded successfully.');
       } catch (error) {
         setMessage('Failed to upload file');
       }
@@ -29,6 +37,7 @@ const FileUpload = () => {
 
   const handleCancel = () => {
     setFile(null);
+    setUploadResponse(null);
     setMessage('File upload cancelled.');
   };
 
@@ -53,6 +62,13 @@ const FileUpload = () => {
       </button>
       <p>{message}</p>
       {file && <p>Selected file: {file.name}</p>}
+      {uploadResponse && (
+        <div>
+          <p>Document Name: {uploadResponse.name}</p>
+          <p>Document Link: <a href={uploadResponse.url} target="_blank" rel="noopener noreferrer">{uploadResponse.url}</a></p>
+          <p>{uploadResponse.text}</p>
+        </div>
+      )}
       <div className="modal-footer">
         <button className="btn btn-secondary" onClick={handleCancel}>Cancel</button>
         <button className="btn btn-primary" onClick={handleFileUpload}>Upload File</button>
