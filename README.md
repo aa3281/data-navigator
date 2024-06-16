@@ -27,3 +27,7 @@ Easily set up a local development environment!
 - To-do item 1
 - To-do item 2
 - To-do item 3
+
+# Acknowledgements
+- https://codepen.io/havardob/pen/mdPoYmY
+- https://www.brandcolorcode.com/microsoft
