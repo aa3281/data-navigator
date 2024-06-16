@@ -11,11 +11,6 @@ const FileUpload = () => {
   };
 
   const handleFileUpload = async () => {
-    // if (file) {
-    //   setMessage(`File "${file.name}" uploaded successfully.`);
-    // } else {
-    //   setMessage('Please select a file to upload');
-    // }
     if (file) {
       try {
         const response = await uploadFileToBlob(file);

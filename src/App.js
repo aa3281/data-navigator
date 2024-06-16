@@ -5,8 +5,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Upload PDF to Azure Blob Storage</h1>
-        <p>Description of how to use the app</p>
+        <h1>DataNavigator</h1>
+        <p>
+          Upload your PDF documents to Azure Blob Storage and leverage Azure AI services to extract text and summarise documents effortlessly.
+        </p>
         <FileUpload />
       </header>
     </div>
