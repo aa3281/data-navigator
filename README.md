@@ -7,7 +7,7 @@ Short blurb about what your product does.
 Here is a working live demo : https://example.com
 
 # Key Features
-- Feature 1
+- File upload 
 - Feature 2
 - Feature 3
 

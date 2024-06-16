@@ -1,6 +1,5 @@
-// src/FileUpload.js
-
 import React, { useState, useRef } from 'react';
+import { uploadFileToBlob } from './blobService';
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
@@ -11,9 +10,19 @@ const FileUpload = () => {
     setFile(event.target.files[0]);
   };
 
-  const handleFileUpload = () => {
+  const handleFileUpload = async () => {
+    // if (file) {
+    //   setMessage(`File "${file.name}" uploaded successfully.`);
+    // } else {
+    //   setMessage('Please select a file to upload');
+    // }
     if (file) {
-      setMessage(`File "${file.name}" uploaded successfully.`);
+      try {
+        const response = await uploadFileToBlob(file);
+        setMessage(response);
+      } catch (error) {
+        setMessage('Failed to upload file');
+      }
     } else {
       setMessage('Please select a file to upload');
     }
@@ -48,7 +57,8 @@ const FileUpload = () => {
         <span className="upload-area-title">Choose a file to upload.</span>
       </button>
       <p>{message}</p>
-      <div class="modal-footer">
+      {file && <p>Selected file: {file.name}</p>}
+      <div className="modal-footer">
         <button className="btn btn-secondary" onClick={handleCancel}>Cancel</button>
         <button className="btn btn-primary" onClick={handleFileUpload}>Upload File</button>
       </div>
