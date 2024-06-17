@@ -161,7 +161,7 @@ a {
   }
 
   to {
-    transform: rotate(360deg);
+    transform: rotate(-360deg);
   }
 }
 
@@ -170,4 +170,36 @@ a {
   display: inline-block;
   font-size: 2rem; /* Adjust size as needed */
   animation: App-logo-spin 2s linear infinite;
+}
+
+.navigation {
+  background-color: #7EB900;
+  padding: 1rem;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    
+    li {
+      margin: 0 1rem;
+      
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.file-upload, .file-search {
+  margin-top: 2rem;
 }
