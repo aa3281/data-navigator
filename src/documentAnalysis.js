@@ -16,15 +16,27 @@ const key = "474b149a54d242c19dd6a711867986de";
 
 async function main(fileUrl) {
     const client = new DocumentAnalysisClient(endpoint, new AzureKeyCredential(key));
-    const poller = await client.beginAnalyzeDocument("prebuilt-read", fileUrl);
+    const poller = await client.beginAnalyzeDocument("prebuilt-layout", fileUrl);
 
-    const { content, pages } = await poller.pollUntilDone();
+    const { content, pages, paragraphs } = await poller.pollUntilDone();
 
     if (!pages || pages.length <= 0) {
         throw new Error("No pages were extracted from the document.");
     }
 
-    const fullText = pages.map(page => page.lines.map(line => line.content).join("\n")).join("\n\n");
+    // const fullText = pages.map(page => page.lines.map(line => line.content).join("\n")).join("\n\n");
+    let fullText = "";
+
+    
+    paragraphs.forEach(paragraph => {
+        const role = paragraph.role || "text";
+        if (role === "title" || role === "sectionHeading") {
+            fullText += `<h2>${paragraph.content}</h2>\n`;
+        } else {
+            fullText += `${paragraph.content}\n`;
+        }
+    });
+
     const summaryText = fullText.substring(0, 200) + "..."; // Example summary: first 200 characters
 
     return { summaryText, fullText };

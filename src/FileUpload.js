@@ -87,17 +87,20 @@ const FileUpload = () => {
       {file && !uploadResponse && <p>Selected file: {file.name}</p>}
       {uploadResponse && (
         <>
-          <hr style={{ color: '#00a3ee' }} />
+          <hr style={{ borderColor: '#00a3ee' }} />
           <div className="file-upload-results">
             <h1>Document Name: {uploadResponse.name}</h1>
             <p>Document Link: <a href={uploadResponse.url} target="_blank" rel="noopener noreferrer">{uploadResponse.url}</a></p>
             <div className='response-section'>
               <h3>Section Summaries</h3>
+              <hr style={{marginBottom: '2rem', borderColor:'#00a3ee'}}/>
               <p>{uploadResponse.summaryText}</p>
             </div>
             <div className='response-section'>
               <h3>Full Text</h3>
-              <p>{uploadResponse.fullText}</p>
+              <hr style={{marginBottom: '2rem', borderColor:'#00a3ee'}}/>
+              {/* <p style={{ whiteSpace: 'pre-wrap' }}>{uploadResponse.fullText}</p> */}
+              <div dangerouslySetInnerHTML={{ __html: uploadResponse.fullText }}></div>
             </div>
           </div>
         </>
