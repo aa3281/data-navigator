@@ -9,8 +9,8 @@ function App() {
         <p>
           Upload your PDF documents to Azure Blob Storage and leverage Azure AI services to extract text and summarise documents effortlessly.
         </p>
-        <FileUpload />
       </header>
+      <FileUpload />
     </div>
   );
 }
