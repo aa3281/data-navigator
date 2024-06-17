@@ -2,9 +2,14 @@
 DataNavigator is a centralised platform designed to empower users with the ability to upload, manage, and search through PDF documents stored in Azure Blob Storage. This platform provides features to extract and parse document content, generate summaries, and perform natural language queries, enabling efficient and detailed information retrieval from a collection of documents.
 
 # Demo and Screenshot
-
-
 Here is a working live demo : https://example.com
+
+![Upload File](/screenshots/1.png "Upload File Screen")
+
+![Upload File](/screenshots/2.png "Successful Upload Screen")
+
+![Upload File](/screenshots/3.png "Search File Screen")
+
 
 # Key Features
 - File upload to Azure Blob Container 
