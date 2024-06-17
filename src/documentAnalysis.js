@@ -26,18 +26,32 @@ async function main(fileUrl) {
 
     // const fullText = pages.map(page => page.lines.map(line => line.content).join("\n")).join("\n\n");
     let fullText = "";
+    let sections = [];
+    let currentSection = { title: "", content: "" };
 
-    
     paragraphs.forEach(paragraph => {
         const role = paragraph.role || "text";
         if (role === "title" || role === "sectionHeading") {
-            fullText += `<h2>${paragraph.content}</h2>\n`;
+            if (currentSection.content) {
+                sections.push(currentSection);
+            }
+            currentSection = { title: paragraph.content, content: "" };
         } else {
-            fullText += `${paragraph.content}\n`;
+            currentSection.content += `${paragraph.content}\n`;
         }
     });
 
-    const summaryText = fullText.substring(0, 200) + "..."; // Example summary: first 200 characters
+    if (currentSection.content) {
+        sections.push(currentSection);
+    
+    }
+    sections.forEach(section => {
+        fullText += `<h2>${section.title}</h2>\n${section.content}\n`;
+    });
+
+    // const summaryText = fullText.substring(0, 200) + "..."; // Example summary: first 200 characters
+    // const summaryText = sections.map(section => section.content.substring(0, 200) + "...").join("\n");
+    const summaryText = sections.map(section => `<strong>${section.title}</strong>\n<br/>${section.content.substring(0, 200)}...<br/><br/>`).join("\n\n");
 
     return { summaryText, fullText };
 }
