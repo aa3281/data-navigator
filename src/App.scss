@@ -24,6 +24,8 @@ a {
   }
 }
 
+
+
 .response-section-title {
   color: #00a3ee;
 }
@@ -161,4 +163,11 @@ a {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.loading-icon {
+  display: inline-block;
+  font-size: 2rem; /* Adjust size as needed */
+  animation: App-logo-spin 2s linear infinite;
 }

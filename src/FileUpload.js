@@ -6,6 +6,7 @@ const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [uploadResponse, setUploadResponse] = useState(null);
   const [message, setMessage] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
@@ -14,6 +15,7 @@ const FileUpload = () => {
 
   const handleFileUpload = async () => {
     if (file) {
+      setIsUploading(true);
       try {
         const response = await uploadFileToBlob(file);
         const analysisResult = await main(response.url);
@@ -38,7 +40,10 @@ const FileUpload = () => {
           console.error('Error:', error.message);
           setMessage(`Failed to upload file: ${error.message}`);
         }
+      } finally {
+        setIsUploading(false);
       }
+      
     } else {
       setMessage('Please select a file to upload');
     }
@@ -76,6 +81,9 @@ const FileUpload = () => {
           </span>
           <span className="upload-area-title">Choose a file to upload.</span>
         </button>
+        {isUploading && (
+          <div className="loading-icon">&#8634;</div>
+        )}
         <div className="modal-footer">
           <button className="btn btn-secondary" onClick={handleCancel}>Cancel</button>
           <button className="btn btn-primary" onClick={handleFileUpload}>Upload File</button>
