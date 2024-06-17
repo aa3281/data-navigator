@@ -3,12 +3,16 @@
   text-align: center;
   display: grid;
   grid-template:
-    '. . appheader . .'
-    '. . fileupload . .'
-    '. . searchcontainer . .';
+    '. appheader appheader appheader .'
+    '. fileupload fileupload fileupload .'
+    '. searchcontainer searchcontainer searchcontainer .'
+    '. filelist filelist filelist .';
   color: #727272;
   background-color: #fff;
   margin: 1.5rem;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
 }
 
 /* Header Styling */
@@ -20,7 +24,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   grid-area: appheader;
-  width: 75%;
   margin: 0 auto;
 
   p {
@@ -57,18 +60,31 @@
   }
 }
 
+
+/* File List */
+.file-list {
+  grid-area: filelist;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 4rem 0;
+
+  h2 {
+    text-align: center;
+  }
+}
+
 /* Search Container Styling */
 .search-container {
   display: flex;
-  justify-content: center;
-  margin-top: 2rem;
   grid-area: searchcontainer;
 }
 
 .search-form {
   display: flex;
   align-items: center;
-  width: 75%;
+  width: 100%;
+  margin: 0 1rem;
 }
 
 .search-input {
