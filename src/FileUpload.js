@@ -63,7 +63,7 @@ const FileUpload = () => {
   return (
     <>
       <header className="App-header">
-        <h1>DataNavigator</h1>
+        <h1>DataNavigator: File Upload</h1>
         <p>
           Upload your PDF documents to Azure Blob Storage and leverage Azure AI services to extract text and summarise documents effortlessly.
         </p>
